@@ -11,6 +11,7 @@ npm install express
 npm install dotenv
 npm install --save-dev nodemon
 npm install mysql2
+npm install cors
 
 ### Docker and MySQL
 #### Step 1: Install Docker

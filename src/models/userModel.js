@@ -2,9 +2,7 @@ import connection from '../helpers/dbConnection.js'
 
 
 const getUserAuthentication = async (username) => {
-    console.log("\n\n\n\n\nOi " + username + "\n\n\n\n\n")
     const [user] = await connection.execute('SELECT id, name, username, password, points FROM user WHERE username = ?', [username])
-    console.log("\n\n\n\n\nOI\n\n\n\n\n")
     return user[0]
 }
 
@@ -15,7 +13,15 @@ const createNewUser = async (user) => {
     return {insertId: createdUser.insertId}
 }
 
+const updateUserPoints = async (id, points) => {
+    console.log("updated")
+    const query = 'UPDATE user SET points = ? WHERE id = ?'
+    const [updatedUser] = await connection.execute(query, [points, id])
+    return updatedUser
+}
+
 export default {
     createNewUser,
-    getUserAuthentication
+    getUserAuthentication,
+    updateUserPoints
 }
